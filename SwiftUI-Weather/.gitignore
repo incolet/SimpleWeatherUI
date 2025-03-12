@@ -1,0 +1,42 @@
+# Xcode Specific
+*.xcworkspace/
+*.xcuserdata/
+*.xcodeproj/project.xcworkspace/
+*.xcdebugger/
+
+# Build Folders
+DerivedData/
+build/
+
+# Secrets and Config Files
+Secrets.plist
+Config.xcconfig
+*.xcconfig
+
+# Package Managers
+Pods/
+Podfile.lock
+.swiftpm/
+Package.resolved
+Carthage/Build/
+
+# Debug & Crash Reports
+*.crash
+*.log
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# Environment Variables
+.env
+.env.*
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Trashes
