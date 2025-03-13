@@ -10,9 +10,22 @@
 		DA67642D2D80DC0300FADF38 /* SwiftUI-Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DA67644F2D81410D00FADF38 /* Exceptions for "SwiftUI-Weather" folder in "SwiftUI-Weather" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DA67642C2D80DC0300FADF38 /* SwiftUI-Weather */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DA67642F2D80DC0300FADF38 /* SwiftUI-Weather */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DA67644F2D81410D00FADF38 /* Exceptions for "SwiftUI-Weather" folder in "SwiftUI-Weather" target */,
+			);
 			path = "SwiftUI-Weather";
 			sourceTree = "<group>";
 		};

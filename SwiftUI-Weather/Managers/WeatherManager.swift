@@ -118,14 +118,15 @@ class WeatherManager: ObservableObject {
         for (day, items) in grouped {
             let targetTime = calendar.date(bySettingHour: 12, minute: 0, second: 0, of: day) ?? day
             if let closest = items.min(by: { abs(Date(timeIntervalSince1970: $0.dt).timeIntervalSince(targetTime)) < abs(Date(timeIntervalSince1970: $1.dt).timeIntervalSince(targetTime)) }) {
-                let forecast = DailyForecast(dayOfWeek: DateFormatter().shortWeekdaySymbols[calendar.component(.weekday, from: Date(timeIntervalSince1970: closest.dt)) - 1].lowercased(),
-                                              temperature: Int(closest.main.temp),
-                                              icon: mapIcon(from: closest.weather.first?.icon ?? ""))
+                let forecast = DailyForecast(date: day,
+                                             dayOfWeek: DateFormatter().shortWeekdaySymbols[calendar.component(.weekday, from: Date(timeIntervalSince1970: closest.dt)) - 1].lowercased(),
+                                             temperature: Int(closest.main.temp),
+                                             icon: mapIcon(from: closest.weather.first?.icon ?? ""))
                 dailyForecasts.append(forecast)
             }
         }
         // Sort by day
-        return dailyForecasts.sorted { $0.dayOfWeek < $1.dayOfWeek }
+        return dailyForecasts.sorted { $0.date < $1.date }
     }
     
     // Generate default forecast data for the next 5 days
@@ -136,7 +137,7 @@ class WeatherManager: ObservableObject {
         return (1...5).map { offset in
             let futureDate = calendar.date(byAdding: .day, value: offset, to: today)!
             let dayOfWeek = DateFormatter().shortWeekdaySymbols[calendar.component(.weekday, from: futureDate) - 1].uppercased()
-            return DailyForecast(dayOfWeek: dayOfWeek, temperature: 70, icon: "cloud.sun.fill")
+            return DailyForecast(date: futureDate, dayOfWeek: dayOfWeek, temperature: 70, icon: "cloud.sun.fill")
         }
     }
 }
@@ -169,6 +170,7 @@ struct ForecastItem: Decodable {
 
 struct DailyForecast: Identifiable {
     var id = UUID()
+    let date: Date
     let dayOfWeek: String
     let temperature: Int
     let icon: String
